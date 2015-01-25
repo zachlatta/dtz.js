@@ -1,9 +1,10 @@
 $(document).ready(function(){
-   function animate_rooms() {
-        $('#games').children('tr').each(function(){
-            $(this).addClass('active');
-        });
-   }
-
-   setTimeout(animate_rooms, 1000);
+debugger;
+   $('ul.cards').children('li').each(function(){
+        debugger;
+        id = 1;
+        top = id * 40 +'px;
+       $('ul li:nth-child(' + id + ')').css({'top': top, 'z-index': id, 'trandsition-duration': '3s'});
+       id += 1
+   });
 });
