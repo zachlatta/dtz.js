@@ -24,8 +24,14 @@ app.get('/conversations/:chat_id', function(req, res) {
 });
 
 app.get('/conversations', function(req, res) {
-  knex('conversations').then(function (conversations) {
-    res.send(conversations);
+  knex.raw('SELECT c.* \
+FROM conversations as c \
+WHERE NOT EXISTS \
+( SELECT * \
+  FROM messages as m \
+  WHERE m.conversation=c.id \
+)').then(function (data) {
+    res.send(data.rows);
   });
 });
 
