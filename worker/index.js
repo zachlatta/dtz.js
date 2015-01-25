@@ -98,7 +98,6 @@ setInterval(function () {
 
   var currentTime = new Date();
   var secondsPassed = (currentTime - om.lastMsgTime) / 1000;
-  console.log(secondsPassed);
   if (secondsPassed > 30) {
     console.log('ending conversation');
     om.disconnect(function (err) {
