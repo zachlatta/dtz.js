@@ -9,8 +9,7 @@ $(document).ready(function(){
     $iphone.hide();
 
     $start.on('click', function(){
-        $macbook.show();
-        $iphone.show();
+        
 
         $.ajax({
         url:"/conversations",
@@ -24,18 +23,36 @@ $(document).ready(function(){
                 });
 
             $('#ids a').on('click', function(){
-                                id = $(this).data('id');
-            console.log("CLICKED " +    id);
+            id = $(this).data('id');
+            console.log("CLICKED " + id);
+
             $.ajax({
                 url: "/conversations/" + id,
                 type: 'GET',
                 dataType: 'json',
                 success: function(data) {
+
+
+
+                    $iphone_screen = $('.md-screen');
                     console.log("SUCCESS " + data);
-                    debugger;
+                    $('#ids').fadeOut();
+
+
                     data.forEach(function(item) {
-                        console.log(item);
+                        sender = data['sender'];
+                        console.log(item.contents);
+                        if (sender == 'them') {
+                            $iphone_screen.append('<p class="message bot"><br>' + item.contents + '</p>');
+                        } else {
+                            $iphone_screen.append('<p class="message"><br>' + item.contents + '</p>');
+                        }
                     });
+
+
+
+                    $macbook.fadeIn();
+                    $iphone.fadeIn();
                 },
                 error : function(error) {
                     console.log("ERROR " + error);
