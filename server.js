@@ -14,7 +14,7 @@ var knex = require('knex')({
 app.get('/', function( req, res ) {
   res.render('index');
 });
-app.get('/omegle/:chat_id', function(req, res) {
+app.get('/conversations/:chat_id', function(req, res) {
   var omegle = knex('messages')
     .where('conversation', req.params.chat_id)
     .select('id', 'sender', 'contents')
@@ -23,14 +23,10 @@ app.get('/omegle/:chat_id', function(req, res) {
   });
 });
 
-app.get('/omegle', function(req, res) {
-  knex('conversations').where('platform', 'omegle').then(function (conversations) {
+app.get('/conversations', function(req, res) {
+  knex('conversations').then(function (conversations) {
     res.send(conversations);
   });
-});
-
-app.get('/tinder', function(req, res) {
-  res.send('yo, tinder');
 });
 
 app.listen(process.env.PORT || 3000);

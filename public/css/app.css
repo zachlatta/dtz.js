@@ -98,10 +98,6 @@ p {
   z-index: 1;
 }
 
-.brand-logo {
-  margin-left: 1em;
-}
-
 a:hover {
   color: #fff;
 }
@@ -112,15 +108,4 @@ a:hover {
 
 .md-macbook-pro {
   font-size: .9em;
-}
-
-.message::after {
-  content: "";
-  position: absolute;
-  right: -0.5em;
-  bottom: 0;
-  width: 0.5em;
-  height: 1em;
-  border-left: 0.5em solid #1289fe;
-  border-bottom-left-radius: 1em 0.5em;
 }
