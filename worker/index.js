@@ -6,10 +6,12 @@ var db = require('knex')({
   client: 'pg',
   connection: process.env.PG_CONNECTION_STRING
 });
+
 var om = new Omegle();
 
-var conversationParams = [];
-var conversationId;
+om.conversationParams = [];
+om.conversationId;
+om.lastMsgTime = new Date();
 om.start(function (err) {
   if (err) {
     console.log(err);
@@ -21,9 +23,9 @@ om.start(function (err) {
     .returning('id')
     .insert({platform: 'omegle', partner_id: partnerId})
   .then(function (ids) {
-    conversationId = ids[0];
+    om.conversationId = ids[0];
 
-    console.log('conversation ' + conversationId + ' with user ' + partnerId +
+    console.log('conversation ' + om.conversationId + ' with user ' + partnerId +
                 ' started');
   })
   .error(function (err) {
@@ -39,9 +41,10 @@ om.on('disconnected', function () {
 
 om.on('gotMessage', function (msg) {
 //function getMsg(msg) {
+  om.lastMsgTime = new Date();
   console.log('them>', msg);
   db('messages').insert({
-    conversation: conversationId,
+    conversation: om.conversationId,
     sender: 'them',
     contents: msg
   })
@@ -51,9 +54,9 @@ om.on('gotMessage', function (msg) {
 
   var cmd = './run_zork.sh';
 
-  conversationParams.push(msg); 
-  if (conversationParams.length > 1) {
-    cmd += ' "' + conversationParams.join('" "') + '"';
+  om.conversationParams.push(msg); 
+  if (om.conversationParams.length > 1) {
+    cmd += ' "' + om.conversationParams.join('" "') + '"';
   }
 
   exec(cmd, function (err, stdout, stderr) {
@@ -69,7 +72,7 @@ om.on('gotMessage', function (msg) {
       om.send(line, function (err) {
         console.log('me>', line);
         db('messages').insert({
-          conversation: conversationId,
+          conversation: om.conversationId,
           sender: 'me',
           contents: line
         })
@@ -88,6 +91,23 @@ om.on('gotMessage', function (msg) {
 //}
 });
 
-//setInterval(function () {
-  //getMsg('hihi');
-//}, 6000);
+setInterval(function () {
+  if (!om.lastMsgTime) {
+    return;
+  }
+
+  var currentTime = new Date();
+  var secondsPassed = (currentTime - om.lastMsgTime) / 1000;
+  console.log(secondsPassed);
+  if (secondsPassed > 30) {
+    console.log('ending conversation');
+    om.disconnect(function (err) {
+      if (err) {
+        console.error(err);
+        process.exit(1);
+        return;
+      }
+      process.exit(0);
+    });
+  }
+}, 1000);
