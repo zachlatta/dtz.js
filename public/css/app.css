@@ -109,3 +109,7 @@ a:hover {
 .md-macbook-pro {
   font-size: .9em;
 }
+
+p {
+  padding-top: 0;
+}

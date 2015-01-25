@@ -40,12 +40,12 @@ $(document).ready(function(){
 
 
                     data.forEach(function(item) {
-                        sender = data['sender'];
+                        sender = item['sender'];
                         console.log(item.contents);
                         if (sender == 'them') {
-                            $iphone_screen.append('<p class="message bot"><br>' + item.contents + '</p>');
-                        } else {
                             $iphone_screen.append('<p class="message"><br>' + item.contents + '</p>');
+                        } else {
+                            $iphone_screen.append('<p class="message bot"><br>' + item.contents + '</p>');
                         }
                     });
 
