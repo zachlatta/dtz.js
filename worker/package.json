@@ -10,6 +10,8 @@
   "license": "MIT",
   "dependencies": {
     "omegle": "^0.1.0",
-    "q": "^1.1.2"
+    "q": "^1.1.2",
+    "tinderjs": "^1.0.8",
+    "underscore": "^1.7.0"
   }
 }
