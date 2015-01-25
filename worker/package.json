@@ -9,7 +9,8 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "hiredis": "^0.1.17",
-    "redis": "^0.12.1"
+    "bull": "^0.2.1",
+    "omegle": "^0.1.0",
+    "q": "^1.1.2"
   }
 }
