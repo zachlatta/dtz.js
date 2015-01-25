@@ -1,9 +1,11 @@
-var Q = require('q');
+var exec = require('child_process').exec;
 var Queue = require('bull');
 var Omegle = require('omegle').Omegle;
 
 var msgQueue = Queue('msg', 6379, '127.0.0.1');
 var om = new Omegle();
+
+var conversationParams = [];
 
 msgQueue.process(function (job, done) {
   console.log(job.data);
@@ -26,17 +28,31 @@ om.on('disconnected', function () {
 om.on('gotMessage', function (msg) {
   console.log('msg received:', msg);
 
-  om.startTyping(function (err) {
-    console.log('sent start typing');
+  var cmd = './run_zork.sh';
 
-    setTimeout(function () {
-      om.stopTyping(function (err) {
-        console.log('sent stop typing');
+  if (conversationParams.length > 0) {
+    conversationParams.push(msg); 
+    cmd += ' "' + conversationParams.join('" "') + '"';
+  }
 
-        om.send('hey!', function (err) {
-          console.log('sent hey');
+  exec(cmd, function (err, stdout, stderr) {
+    if (err) {
+      console.error(err);
+      return
+    }
+
+    om.startTyping(function (err) {
+      console.log('sent start typing');
+
+      setTimeout(function () {
+        om.stopTyping(function (err) {
+          console.log('sent stop typing');
+
+          om.send(stdout, function (err) {
+            console.log('sent', stdout);
+          });
         });
-      });
-    }, 3000);
+      }, 3000);
+    });
   });
 });
