@@ -16,17 +16,17 @@ bot.authorize(
 
     var defaults = bot.getDefaults()
     var recs_size = defaults.globals.recs_size;
-
-    bot.getRecommendations(recs_size, function(error, data){
-      _.chain(data.results)
-        .pluck('_id')
-        .each(function(id) {
-          bot.like(id, function(error, data) {
-            console.log("liked: " + id);
-          });
+    setInterval(function() {
+        bot.getRecommendations(recs_size, function(error, data){
+          _.chain(data.results)
+            .pluck('_id')
+            .each(function(id) {
+              bot.like(id, function(error, data) {
+                console.log("liked: " + id);
+              });
+            });
         });
-    });
-
+    }, 60000);
     // setInterval(function () {
     //   bot.getUpdates(function (err, updates) {
     //     _.each(updates.matches, function (match) {
