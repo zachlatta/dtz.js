@@ -1,10 +1,27 @@
+
 $(document).ready(function(){
-debugger;
-   $('ul.cards').children('li').each(function(){
-        debugger;
-        id = 1;
-        top = id * 40 +'px;
-       $('ul li:nth-child(' + id + ')').css({'top': top, 'z-index': id, 'trandsition-duration': '3s'});
-       id += 1
-   });
+    $start = $('#start');
+    $macbook = $('md-macbook-pro');
+    $iphone = $('md-iphone-5');
+
+    $macbook.hide();
+
+    $iphone.hide();
+
+    $start.on('click', function(){
+        $macbook.show();
+        $iphone.show();
+    });
+
+$start.click(function(){
+  $.ajax({
+        url:"/omegle",
+        type: 'GET',
+        dataType: 'html',
+        success:function(data){
+            debugger;
+            console.log(data);
+  }});
+});
+
 });

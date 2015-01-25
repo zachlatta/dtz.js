@@ -1,7 +1,14 @@
-$primary-color: #faf9f4;
+$default-color: #faf9f4;
+$primary-color: #ff7258;
+$blue: #007AFF;
 
 body {
+	font-family: Roboto;
+	background: $default-color;
 	font-size: 20px;
+	overflow: auto;
+	overflow-y: hidden;
+	max-height: 100vh
 }
 
 table#games {
@@ -12,12 +19,100 @@ table#games {
 	background: #000
 }
 
-ul li {
-	border: $primary-color 3px solid;
+ul.cards li {
+	border: darken($default-color, 10) 1px solid;
 	border-radius: 6px;
 	width: 50vw;
-	margin-top: 30vh;
+	margin-top: 50vh;
 	padding-top: 2em;
-	position: absolute;
+	margin: 0 auto;
 	background: #fff;
+	position: absolute;
+	left: 0;
+	right: 0;
+}
+
+#console {
+	font-size: 2em;
+	color: #fff;
+	background: #000;
+}
+p {
+  margin: 20px;
+  padding: 20px;
+  border-radius: 20px;
+  background-color: #eee;
+}
+
+nav {
+	color: #fff;
+	background-color: #ee6e73;
+	width: 100%;
+	line-height: 56px;
+	box-shadow: none;
+	.nav-wrapper {
+		background: #fff;
+		.brand-logo {
+			color: $primary-color;
+			font-weight: 800
+		}
+	}
+}
+
+hr {
+	width: 100%;
+	margin-top: 1em;
+}
+
+.message {
+	border: darken($default-color, 20) 1px solid;
+	padding: 1em;
+	&:hover {
+		background: darken($default-color, 3);
+	}
+	&.bot {
+		background: #007AFF;
+		border-color: darken($blue, 10);
+		color: #fff;
+		&:hover {
+			background: darken($blue, 3)
+		}
+	}
+}
+
+.md-screen img {
+	width: 80px !important;
+}
+
+p {
+	font-size: .9em;
+}
+
+.md-screen {
+	background: #f2f2f2 !important;
+	overflow: scroll !important;
+}
+
+.md-macbook-pro .md-screen {
+	overflow: scroll !important;
+}
+
+.md-body {
+	z-index: 1
+}
+
+.brand-logo {
+	margin-left: 1em;
+}
+
+a:hover {
+	color: #fff;
+}
+
+.md-iphone-5 {
+	font-size: .9em;
+}
+
+.md-macbook-pro {
+	font-size: .9em;
 }

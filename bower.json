@@ -1,0 +1,19 @@
+{
+  "name": "Text Adventure",
+  "version": "0.0.0",
+  "authors": [
+    "Andy Fang <andy@fang.ws>"
+  ],
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#~0.5.4"
+  }
+}

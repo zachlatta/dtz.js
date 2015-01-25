@@ -1,10 +1,9 @@
 doctype
 html
 	head
-		link(rel="stylesheet" href="//galaxyui.com/css/galaxy.css")
+		//- link(rel="stylesheet" href="//galaxyui.com/css/galaxy.css")
+		link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.0/css/materialize.min.css")
 		link(rel="stylesheet" href="/css/app.css")
-
-
 
 	body
 		!= yield
@@ -12,3 +11,4 @@ html
 		script(src="//code.jquery.com/jquery.min.js")
 		script(src="/js/charts/charts.js")
 		script(src="/js/app.js")
+		script(src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.0/js/materialize.min.js")
