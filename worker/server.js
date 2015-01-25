@@ -16,7 +16,7 @@ app.get('/omegle/:chat_id', function(req, res) {
 });
 
 app.get('/omegle', function(req, res) {
-  knex('conversations').select('*').then(function (conversations) {
+  knex('conversations').where('platform', 'omegle').then(function (conversations) {
     res.send(conversations);
   });
 });
