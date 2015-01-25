@@ -9,8 +9,10 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "bull": "^0.2.1",
+    "knex": "^0.7.3",
+    "node-uuid": "^1.4.2",
     "omegle": "^0.1.0",
+    "pg": "^4.2.0",
     "q": "^1.1.2",
     "tinderjs": "^1.0.8",
     "underscore": "^1.7.0",

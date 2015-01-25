@@ -1,23 +1,35 @@
 var exec = require('child_process').exec;
-var Queue = require('bull');
 var Omegle = require('omegle').Omegle;
+var uuid = require('node-uuid');
 
-var msgQueue = Queue('msg', 6379, '127.0.0.1');
+var db = require('knex')({
+  client: 'pg',
+  connection: process.env.PG_CONNECTION_STRING
+});
 var om = new Omegle();
 
 var conversationParams = [];
-
-msgQueue.process(function (job, done) {
-  console.log(job.data);
-  done();
-});
-
+var conversationId;
 om.start(function (err) {
   if (err) {
     console.log(err);
+    return;
   }
 
-  console.log('conversation started');
+  var partnerId = uuid.v4();
+  db('conversations')
+    .returning('id')
+    .insert({platform: 'omegle', partner_id: partnerId})
+  .then(function (ids) {
+    conversationId = ids[0];
+
+    console.log('conversation ' + conversationId + ' with user ' + partnerId +
+                ' started');
+  })
+  .error(function (err) {
+    console.error('something terrible happened while creating the conversation');
+    process.exit(1);
+  });
 });
 
 om.on('disconnected', function () {
@@ -26,12 +38,21 @@ om.on('disconnected', function () {
 });
 
 om.on('gotMessage', function (msg) {
-  console.log('msg received:', msg);
+//function getMsg(msg) {
+  console.log('them>', msg);
+  db('messages').insert({
+    conversation: conversationId,
+    sender: 'them',
+    contents: msg
+  })
+  .catch(function (err) {
+    console.log(err);
+  });
 
   var cmd = './run_zork.sh';
 
-  if (conversationParams.length > 0) {
-    conversationParams.push(msg); 
+  conversationParams.push(msg); 
+  if (conversationParams.length > 1) {
     cmd += ' "' + conversationParams.join('" "') + '"';
   }
 
@@ -41,18 +62,32 @@ om.on('gotMessage', function (msg) {
       return
     }
 
-    om.startTyping(function (err) {
-      console.log('sent start typing');
+    var resp = stdout.trim();
 
-      setTimeout(function () {
-        om.stopTyping(function (err) {
-          console.log('sent stop typing');
-
-          om.send(stdout, function (err) {
-            console.log('sent', stdout);
-          });
+    var sendMsgs = function (lines) {
+      var line = lines.pop();
+      om.send(line, function (err) {
+        console.log('me>', line);
+        db('messages').insert({
+          conversation: conversationId,
+          sender: 'me',
+          contents: line
+        })
+        .catch(function (err) {
+          console.error(err);
         });
-      }, 3000);
-    });
+
+        if (lines.length) {
+          sendMsgs(lines);
+        }
+      });
+    };
+
+    sendMsgs(resp.split('\n').reverse());
   });
+//}
 });
+
+//setInterval(function () {
+  //getMsg('hihi');
+//}, 6000);

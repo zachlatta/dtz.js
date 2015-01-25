@@ -7,8 +7,8 @@ if [ $# -eq 0 ]; then
   echo "$output"
 else
   tmp="$output"
-  for arg in $*; do
-    tmp=$(echo "$tmp" | sed '1,/>.*$/d')
+  for arg in "$@"; do
+    tmp=$(echo "$tmp" | sed '1,/^>.*$/d')
   done
   echo "$tmp"
 fi
