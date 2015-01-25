@@ -113,3 +113,9 @@ a:hover {
 p {
   padding-top: 0;
 }
+
+input[type="text"] {
+  color: #000;
+  font-size: 3em;
+  height: 3em;
+}
