@@ -10,6 +10,11 @@ $(document).ready(function(){
 
     $search.on('input', function(){
         q = $(this).val();
+        if (q == '') {
+            $macbook.hide();
+            $iphone.hide();
+            return false;
+        }
         console.log(q);
 
         $.ajax({
