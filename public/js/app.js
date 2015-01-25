@@ -22,21 +22,25 @@ $(document).ready(function(){
             type: 'GET',
             dataType: 'json',
             success: function(data) {
-                $iphone_screen = $('.md-screen');
+                $device_screen = $('.md-screen');
                 data.forEach(function(item) {
                     sender = item['sender'];
                     console.log(item.contents);
-                    if (sender == 'them') {
-                        $iphone_screen.append('<p class="message"><br>' + item.contents + '</p>');
+                    if ((sender == 'me') && (item.contents.length > 0)) {
+                        $device_screen.append('<p class="message bot"><br>' + item.contents + '</p>');
                     } else {
-                        $iphone_screen.append('<p class="message bot"><br>' + item.contents + '</p>');
+                        $device_screen.append('<p class="message"><br>' + item.contents + '</p>');
                     }
+
                 });
 
 
 
-                $macbook.fadeIn();
-                $iphone.fadeIn();
+                if (data.platform == "omegle"){
+                    $iphone.fadeIn();
+                } else {
+                    $macbook.fadeIn();
+                }
             },
             error : function(error) {
                 console.log("ERROR " + error);
