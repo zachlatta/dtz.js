@@ -1,0 +1,9 @@
+#!/usr/bin/expect -f
+
+eval spawn ./frotz_amd64_linux -S 50000 -dp ../zork/DATA/ZORK3.DAT
+expect ">"
+
+foreach cmd $argv {
+  send "$cmd\r"
+  expect ">"
+}
