@@ -1,11 +1,18 @@
 var express = require('express');
 var app = express();
+app.set('views', __dirname);
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
 var _ = require('underscore');
 var knex = require('knex')({
   client: 'pg',
   connection: process.env.PG_CONNECTION_STRING
 });
 
+
+app.get('/', function( req, res ) {
+  res.render('index');
+});
 app.get('/omegle/:chat_id', function(req, res) {
   var omegle = knex('messages')
     .where('conversation', req.params.chat_id)
