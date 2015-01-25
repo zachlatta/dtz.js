@@ -1,8 +1,8 @@
 
 $(document).ready(function(){
     $start = $('#start');
-    $macbook = $('md-macbook-pro');
-    $iphone = $('md-iphone-5');
+    $macbook = $('.md-macbook-pro');
+    $iphone = $('.md-iphone-5');
 
     $macbook.hide();
 
@@ -25,16 +25,21 @@ $(document).ready(function(){
 
             $('#ids a').on('click', function(){
                                 id = $(this).data('id');
-
+            console.log("CLICKED " +    id);
             $.ajax({
                 url: "/conversations/" + id,
                 type: 'GET',
                 dataType: 'json',
                 success: function(data) {
+                    console.log("SUCCESS " + data);
                     debugger;
                     data.forEach(function(item) {
                         console.log(item);
                     });
+                },
+                error : function(error) {
+                    console.log("ERROR " + error);
+                    console.log(error);
                 }
             });
             });
