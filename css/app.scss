@@ -1,3 +1,5 @@
+$primary-color: #faf9f4;
+
 body {
 	font-size: 20px;
 }
@@ -8,4 +10,14 @@ table#games {
 
 .active {
 	background: #000
+}
+
+ul li {
+	border: $primary-color 3px solid;
+	border-radius: 6px;
+	width: 50vw;
+	margin-top: 30vh;
+	padding-top: 2em;
+	position: absolute;
+	background: #fff;
 }
