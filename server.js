@@ -26,7 +26,7 @@ app.get('/conversations/:chat_id', function(req, res) {
 app.get('/conversations', function(req, res) {
   knex.raw('SELECT c.* \
 FROM conversations as c \
-WHERE NOT EXISTS \
+WHERE EXISTS \
 ( SELECT * \
   FROM messages as m \
   WHERE m.conversation=c.id \
