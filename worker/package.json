@@ -9,7 +9,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "bull": "^0.2.1",
     "omegle": "^0.1.0",
     "q": "^1.1.2"
   }

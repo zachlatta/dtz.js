@@ -1,17 +1,9 @@
 var exec = require('child_process').exec;
-var Queue = require('bull');
 var Omegle = require('omegle').Omegle;
 
-var msgQueue = Queue('msg', 6379, '127.0.0.1');
 var om = new Omegle();
 
 var conversationParams = [];
-
-msgQueue.process(function (job, done) {
-  console.log(job.data);
-  done();
-});
-
 om.start(function (err) {
   if (err) {
     console.log(err);
