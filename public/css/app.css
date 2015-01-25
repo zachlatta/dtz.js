@@ -1,0 +1,126 @@
+body {
+  font-family: Roboto;
+  background: #faf9f4;
+  font-size: 20px;
+  overflow: auto;
+  overflow-y: hidden;
+  max-height: 100vh;
+}
+
+table#games {
+  font-size: 1.3em;
+}
+
+.active {
+  background: #000;
+}
+
+ul.cards li {
+  border: #eae6d1 1px solid;
+  border-radius: 6px;
+  width: 50vw;
+  margin-top: 50vh;
+  padding-top: 2em;
+  margin: 0 auto;
+  background: #fff;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+#console {
+  font-size: 2em;
+  color: #fff;
+  background: #000;
+}
+
+p {
+  margin: 20px;
+  padding: 20px;
+  border-radius: 20px;
+  background-color: #eee;
+}
+
+nav {
+  color: #fff;
+  background-color: #ee6e73;
+  width: 100%;
+  line-height: 56px;
+  box-shadow: none;
+}
+nav .nav-wrapper {
+  background: #fff;
+}
+nav .nav-wrapper .brand-logo {
+  color: #ff7258;
+  font-weight: 800;
+}
+
+hr {
+  width: 100%;
+  margin-top: 1em;
+}
+
+.message {
+  border: #dad3ae 1px solid;
+  padding: 1em;
+}
+.message:hover {
+  background: #f5f3e9;
+}
+.message.bot {
+  background: #007AFF;
+  border-color: #0062cc;
+  color: #fff;
+}
+.message.bot:hover {
+  background: #0073f0;
+}
+
+.md-screen img {
+  width: 80px !important;
+}
+
+p {
+  font-size: .9em;
+}
+
+.md-screen {
+  background: #f2f2f2 !important;
+  overflow: scroll !important;
+}
+
+.md-macbook-pro .md-screen {
+  overflow: scroll !important;
+}
+
+.md-body {
+  z-index: 1;
+}
+
+.brand-logo {
+  margin-left: 1em;
+}
+
+a:hover {
+  color: #fff;
+}
+
+.md-iphone-5 {
+  font-size: .9em;
+}
+
+.md-macbook-pro {
+  font-size: .9em;
+}
+
+.message::after {
+  content: "";
+  position: absolute;
+  right: -0.5em;
+  bottom: 0;
+  width: 0.5em;
+  height: 1em;
+  border-left: 0.5em solid #1289fe;
+  border-bottom-left-radius: 1em 0.5em;
+}

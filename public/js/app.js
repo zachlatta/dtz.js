@@ -11,17 +11,19 @@ $(document).ready(function(){
     $start.on('click', function(){
         $macbook.show();
         $iphone.show();
-    });
 
-$start.click(function(){
-  $.ajax({
+        $.ajax({
         url:"/omegle",
         type: 'GET',
-        dataType: 'html',
+        dataType: 'json',
         success:function(data){
-            debugger;
-            console.log(data);
-  }});
-});
+            id = data.id;
 
+            console.log(id);
+            console.log(data.platform);
+
+
+
+          }});
+    });
 });
