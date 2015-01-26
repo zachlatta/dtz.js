@@ -11,6 +11,7 @@ $(document).ready(function(){
 
 $start.on('click', function(){
     $(this).fadeOut();
+
 });
 
 function get_entry(id) {
@@ -35,8 +36,10 @@ function get_entry(id) {
 
         if (data.platform == "omegle"){
             $iphone.fadeIn();
+            $start.fadeOut();
         } else {
             $macbook.fadeIn();
+            $start.fadeOut();
         }
     },
     error : function(error) {

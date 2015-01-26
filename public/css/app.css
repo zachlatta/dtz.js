@@ -57,6 +57,7 @@ nav .nav-wrapper .brand-logo {
   color: #ff7258;
   font-weight: 800;
   padding-top: .2em;
+  padding: 0 1em;
 }
 
 hr {
@@ -112,7 +113,7 @@ a:hover {
 
 .md-macbook-pro {
   font-size: .9em;
-  margin-left: 13em;
+  margin-left: 12em;
   margin-top: 5em;
 }
 
@@ -122,8 +123,10 @@ p {
 
 input[type="text"] {
   color: #000;
-  font-size: 1.3em;
-  padding: .5em 1em;
+font-size: 1.3em;
+text-indent: 5%;
+padding-top: .5em;
+padding-bottom: .3em;
 }
 
 #random {
