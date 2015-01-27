@@ -13,3 +13,7 @@ We're proud to say that DTZ has redefined the conversations of 4,000 men across 
 "Heyy girl, r u dtz?"
 
 [View dtz.js on ChallengePost](http://challengepost.com/software/downtozork-js)
+
+## Instructions
+
+- Run `export PG_CONNECTION_STRING=postgres://postgres:secretpassword@metagross.hackedu.us:5223/dtz` before running `nodemon server.js`.
