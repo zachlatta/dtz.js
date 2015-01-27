@@ -4,4 +4,4 @@
 
 Repository of things for dtz.js. I do not recommend staying here long.
 
-* [ChallengePost](http://hackgeny.challengepost.com/submissions)
+* [ChallengePost](http://challengepost.com/software/downtozork-js)
