@@ -16,4 +16,4 @@ We're proud to say that DTZ has redefined the conversations of 4,000 men across 
 
 ## Instructions
 
-- Run `export PG_CONNECTION_STRING=postgres://yourusername:yourpassword@yourserver.com:5223/dtz` before running `nodemon server.js`. Make sure you set it to a real, properly set up Postgres database.
+- Run `export PG_CONNECTION_STRING=postgres://yourusername:yourpassword@yourserver.com:5223/dtz` before running `nodemon server.js`. Make sure you set it to a real Postgres database with the correct table schema.
